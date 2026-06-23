@@ -1,0 +1,6 @@
+{
+  "name": "Expedlog",
+  "description": "Sistema completo para controle de expedição de pacotes, cadastro de entregadores e empresas, baixa de devoluções, folha de pagamento com recibo em PDF e relatórios de desempenho logístico.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

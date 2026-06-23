@@ -1,0 +1,16 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "distribuidora-entregas",
+  "pages_build_output_dir": "dist",
+  "compatibility_date": "2024-11-01",
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "diamantelog",
+      "database_id": "d7a65a21-7103-465d-9f91-b15d5260c0d2"
+    }
+  ],
+  "vars": {
+    "ENVIRONMENT": "production"
+  }
+}

@@ -1,0 +1,284 @@
+{
+  "entities": {
+    "Filial": {
+      "title": "Filial",
+      "description": "Filial da distribuidora",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "nome": { "type": "string" },
+        "cnpj": { "type": "string" },
+        "cidade": { "type": "string" },
+        "estado": { "type": "string" },
+        "endereco": { "type": "string" },
+        "email": { "type": "string" },
+        "contato": { "type": "string" },
+        "logo": { "type": "string" }
+      },
+      "required": ["id", "nome"]
+    },
+    "Empresa": {
+      "title": "Empresa",
+      "description": "Empresa embarcadora de pacotes",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "nome": { "type": "string" },
+        "cnpj": { "type": "string" },
+        "endereco": { "type": "string" },
+        "email": { "type": "string" },
+        "contato": { "type": "string" },
+        "valorPorPacote": { "type": "number" },
+        "comissaoEntregador": { "type": "number" },
+        "prefixos": { "type": "string" },
+        "createdById": { "type": "string" }
+      },
+      "required": ["id", "nome", "cnpj"]
+    },
+    "Entregador": {
+      "title": "Entregador",
+      "description": "Entregador responsável pelas entregas",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "nome": { "type": "string" },
+        "cpf": { "type": "string" },
+        "endereco": { "type": "string" },
+        "email": { "type": "string" },
+        "contato": { "type": "string" },
+        "foto": { "type": "string" },
+        "placaVeiculo": { "type": "string" },
+        "cnhDoc": { "type": "string" },
+        "createdById": { "type": "string" },
+        "filialId": { "type": "string" }
+      },
+      "required": ["id", "nome", "cpf"]
+    },
+    "Expedicao": {
+      "title": "Expedicao",
+      "description": "Lote de expedição para entrega",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "entregadorId": { "type": "string" },
+        "empresaIds": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "dataHoraSaida": { "type": "string" },
+        "dataHoraRetorno": { "type": "string" },
+        "concluido": { "type": "boolean" },
+        "assinaturaEntregador": { "type": "string" },
+        "tempoVoltaMinutos": { "type": "number" },
+        "rotaId": { "type": "string" },
+        "rotaIds": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "createdById": { "type": "string" },
+        "filialId": { "type": "string" }
+      },
+      "required": ["id", "entregadorId", "dataHoraSaida", "concluido"]
+    },
+    "PreSetMotivo": {
+      "title": "PreSetMotivo",
+      "description": "Motivos personalizados de devolução",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "motivo": { "type": "string" }
+      },
+      "required": ["id", "motivo"]
+    },
+    "Rota": {
+      "title": "Rota",
+      "description": "Rota mapeada de entregas",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "nome": { "type": "string" },
+        "descricao": { "type": "string" },
+        "filialId": { "type": "string" },
+        "createdById": { "type": "string" }
+      },
+      "required": ["id", "nome"]
+    },
+    "User": {
+      "title": "User",
+      "description": "Usuário do sistema",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "username": { "type": "string" },
+        "nomeCompleto": { "type": "string" },
+        "email": { "type": "string" },
+        "passwordHash": { "type": "string" },
+        "isMaster": { "type": "boolean" },
+        "recoveryKey": { "type": "string" },
+        "palavraChave": { "type": "string" },
+        "filiais": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "defaultFilialId": { "type": "string" },
+        "foto": { "type": "string" },
+        "maxConnections": { "type": "number" }
+      },
+      "required": ["id", "username", "nomeCompleto", "email"]
+    },
+    "ItemEstoque": {
+      "title": "ItemEstoque",
+      "description": "Item no estoque físico do pátio",
+      "type": "object",
+      "properties": {
+        "codigoBarras": { "type": "string" },
+        "empresaId": { "type": "string" },
+        "quantidade": { "type": "number" },
+        "dataHoraAtualizacao": { "type": "string" },
+        "usuarioNome": { "type": "string" },
+        "filialId": { "type": "string" }
+      },
+      "required": ["codigoBarras", "empresaId", "quantidade", "filialId"]
+    },
+    "MovimentacaoEstoque": {
+      "title": "MovimentacaoEstoque",
+      "description": "Histórico de movimentação do estoque",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "codigoBarras": { "type": "string" },
+        "empresaId": { "type": "string" },
+        "quantidade": { "type": "number" },
+        "tipo": { "type": "string" },
+        "dataHora": { "type": "string" },
+        "usuarioNome": { "type": "string" },
+        "filialId": { "type": "string" },
+        "entregadorNome": { "type": "string" },
+        "rotaNome": { "type": "string" }
+      },
+      "required": ["id", "codigoBarras", "tipo", "dataHora", "filialId"]
+    },
+    "ItemLixeira": {
+      "title": "ItemLixeira",
+      "description": "Item excluído pendente de restauração",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "tipo": { "type": "string" },
+        "label": { "type": "string" },
+        "subLabel": { "type": "string" },
+        "dados": { "type": "object" },
+        "deletadoEm": { "type": "string" },
+        "deletadoPor": { "type": "string" }
+      },
+      "required": ["id", "tipo", "label", "dados"]
+    },
+    "Vale": {
+      "title": "Vale",
+      "description": "Vale adiantamento de entregador",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "entregadorId": { "type": "string" },
+        "entregadorNome": { "type": "string" },
+        "valor": { "type": "number" },
+        "dataHora": { "type": "string" },
+        "usuarioNome": { "type": "string" },
+        "filialId": { "type": "string" },
+        "observacao": { "type": "string" }
+      },
+      "required": ["id", "entregadorId", "valor", "dataHora", "filialId"]
+    },
+    "ReciboPagamento": {
+      "title": "ReciboPagamento",
+      "description": "Recibo definitivo de acerto de contas",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "entregadorId": { "type": "string" },
+        "entregadorNome": { "type": "string" },
+        "periodoInicio": { "type": "string" },
+        "periodoFim": { "type": "string" },
+        "totalDevolvidos": { "type": "number" },
+        "taxaAbatimento": { "type": "number" },
+        "totalAbatido": { "type": "number" },
+        "comissaoTotal": { "type": "number" },
+        "dataHora": { "type": "string" },
+        "usuarioNome": { "type": "string" },
+        "filialId": { "type": "string" }
+      },
+      "required": ["id", "entregadorId", "comissaoTotal", "dataHora", "filialId"]
+    },
+    "ConciliacaoDiaria": {
+      "title": "ConciliacaoDiaria",
+      "description": "Relatório de conciliação do dia e filial",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "data": { "type": "string" },
+        "filialId": { "type": "string" },
+        "empresaId": { "type": "string" },
+        "quantidadePatio": { "type": "number" },
+        "dataHoraAtualizacao": { "type": "string" },
+        "usuarioNome": { "type": "string" }
+      },
+      "required": ["id", "data", "filialId", "empresaId"]
+    },
+    "TransferenciaPacote": {
+      "title": "TransferenciaPacote",
+      "description": "Registro de transferência entre expedições",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "codigoBarras": { "type": "string" },
+        "empresaId": { "type": "string" },
+        "origemExpedicaoId": { "type": "string" },
+        "origemEntregadorId": { "type": "string" },
+        "origemEntregadorNome": { "type": "string" },
+        "destinoExpedicaoId": { "type": "string" },
+        "destinoEntregadorId": { "type": "string" },
+        "destinoEntregadorNome": { "type": "string" },
+        "dataHora": { "type": "string" },
+        "usuarioNome": { "type": "string" },
+        "filialId": { "type": "string" }
+      },
+      "required": ["id", "codigoBarras", "origemExpedicaoId", "destinoExpedicaoId", "filialId"]
+    },
+    "RetiradaPacote": {
+      "title": "RetiradaPacote",
+      "description": "Registro de retirada categorizada",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "codigoBarras": { "type": "string" },
+        "empresaId": { "type": "string" },
+        "origemExpedicaoId": { "type": "string" },
+        "origemEntregadorId": { "type": "string" },
+        "origemEntregadorNome": { "type": "string" },
+        "motivo": { "type": "string" },
+        "observacao": { "type": "string" },
+        "dataHora": { "type": "string" },
+        "usuarioNome": { "type": "string" },
+        "filialId": { "type": "string" }
+      },
+      "required": ["id", "codigoBarras", "motivo", "dataHora", "filialId"]
+    }
+  },
+  "firestore": {
+    "filiais": { "schema": "Filial", "description": "Coleção de filiais cadastrados" },
+    "empresas": { "schema": "Empresa", "description": "Coleção de empresas de logística" },
+    "entregadores": { "schema": "Entregador", "description": "Coleção de entregadores da frota" },
+    "expedicoes": { "schema": "Expedicao", "description": "Lotes de entregas expedidos aos entregadores" },
+    "motivos_devolucao": { "schema": "PreSetMotivo", "description": "Motivos padrão customizáveis de devolução" },
+    "rotas": { "schema": "Rota", "description": "Rotas cadastradas por filial" },
+    "users": { "schema": "User", "description": "Coleção dos usuários de sistema" },
+    "estoque": { "schema": "ItemEstoque", "description": "Saldo físico atual de pacotes em custódia na filial" },
+    "movimentacoes_estoque": { "schema": "MovimentacaoEstoque", "description": "Histórico de entradas e saídas de pátio" },
+    "lixeira": { "schema": "ItemLixeira", "description": "Lixeira unificada para restauração de dados deletados" },
+    "vales": { "schema": "Vale", "description": "Vales e despesas pendentes" },
+    "recibos_pagamento": { "schema": "ReciboPagamento", "description": "Históricos de fechamento de faturas de entregadores" },
+    "conciliacoes_diarias": { "schema": "ConciliacaoDiaria", "description": "Logs de balanço diário em pátio por filial" },
+    "transferencias_pacotes": { "schema": "TransferenciaPacote", "description": "Log de transferências entre expedições" },
+    "retiradas_pacotes": { "schema": "RetiradaPacote", "description": "Log de devoluções, avarias e outra cidade" }
+  }
+}
